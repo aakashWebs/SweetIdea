@@ -1,6 +1,7 @@
 /* Base Styles */
 body {
     font-family: cursive !important;
+    font-weight: bolder !important;
     color: indianred !important;
     font-style: oblique;
     font-size: 20px;
