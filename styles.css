@@ -9,6 +9,7 @@ body {
     display: flex;
     flex-direction: column; /* Allow vertical stacking */
     min-height: 100vh; /* Ensure body takes full height */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 /* Background Animation */
@@ -38,18 +39,18 @@ body::before {
 /* Container for the content */
 .container {
     background-color: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    max-width: 800px;
-    width: 90%;
+    border-radius: 0; /* Remove card-like rounded corners */
+    box-shadow: none; /* Remove card-like shadow */
+    overflow: visible; /* Allow content to overflow */
+    width: 100%; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
     padding: 20px;
     text-align: center;
     opacity: 0; /* Initially hidden */
     position: relative;
     z-index: 2;
     transition: opacity 2s ease-in-out;
-    margin: 20px auto; /* Center the container */
+    box-sizing: border-box; /* Ensure padding is included in width/height calculations */
 }
 
 /* Mystery Box Styling */
@@ -146,7 +147,7 @@ body::before {
 
 /* Gallery Container Styling */
 .gallery-container {
-    max-height: 400px; /* Limit the height to enable vertical scrolling */
+    height: calc(100vh - 160px); /* Adjust to fit within the viewport, accounting for header and footer */
     overflow-y: auto; /* Enable vertical scrolling */
     padding: 15px 0; /* Add padding for scroll bar visibility */
 }
@@ -159,10 +160,18 @@ body::before {
 .gallery img {
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    max-width: 100%; /* Adjust image size to fit the container */
+    width: 100%; /* Full width of the container */
     height: auto; /* Maintain aspect ratio */
     margin-bottom: 15px; /* Space between images */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Footer Message Styling */
+.footer-message {
+    font-family: 'Great Vibes', cursive;
+    font-size: 28px;
+    color: #ff5e7e;
+    margin-top: 20px; /* Space above the text */
 }
 
 /* Footer Styling */
@@ -196,7 +205,11 @@ footer {
     }
 
     .gallery-container {
-        max-height: 300px; /* Adjust height for smaller screens */
+        height: calc(100vh - 140px); /* Adjust height for smaller screens */
+    }
+
+    .footer-message {
+        font-size: 24px;
     }
 
     footer {
@@ -226,7 +239,11 @@ footer {
     }
 
     .gallery-container {
-        max-height: 250px; /* Adjust height for very small screens */
+        height: calc(100vh - 120px); /* Adjust height for very small screens */
+    }
+
+    .footer-message {
+        font-size: 20px;
     }
 
     footer {
