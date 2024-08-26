@@ -1,9 +1,9 @@
 /* Base Styles */
 body {
-    font-weight: bolder !important;
     color: indianred !important;
-    font-style: oblique;
+    font-style: normal;
     font-size: 20px;
+    font-weight: bolder !important;
     background: linear-gradient(135deg, #ffcccc, #ffe6e6);
     margin: 0;
     padding: 0;
