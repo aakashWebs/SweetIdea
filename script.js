@@ -3,50 +3,66 @@ document.addEventListener("DOMContentLoaded", function() {
     const content = document.getElementById('content');
     const fireworksContainer = document.getElementById('fireworks');
 
-    // Function to create a single firework spark
-    const createFirework = () => {
-        const spark = document.createElement('div');
-        spark.className = 'spark';
-        const size = Math.random() * 20 + 10;
-        spark.style.width = `${size}px`;
-        spark.style.height = `${size}px`;
-        spark.style.left = `${Math.random() * 100}vw`;
-        spark.style.top = `-${size}px`; // Start above the viewport
-        spark.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 70%)`;
-        spark.style.opacity = Math.random();
-        spark.style.transform = `translate(${Math.random() * 50 - 25}px, ${Math.random() * 50 - 25}px)`;
-        fireworksContainer.appendChild(spark);
+    // Function to create a single firework explosion at a given position
+    const createFireworkExplosion = (x, y) => {
+        const numSparks = 30; // Number of sparks per explosion
+        for (let i = 0; i < numSparks; i++) {
+            const spark = document.createElement('div');
+            spark.className = 'spark';
+            const size = Math.random() * 5 + 5; // Smaller sparks for explosion
+            spark.style.width = `${size}px`;
+            spark.style.height = `${size}px`;
+            spark.style.left = `${x}px`;
+            spark.style.top = `${y}px`;
+            spark.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 70%)`;
+            fireworksContainer.appendChild(spark);
 
-        // Animate the spark falling down
-        spark.animate([
-            { transform: `translateY(0)`, opacity: 1 },
-            { transform: `translateY(100vh)`, opacity: 0 }
-        ], {
-            duration: 2000, // Duration for the animation
-            easing: 'linear',
-            fill: 'forwards'
-        });
+            // Animate each spark in a radial direction
+            const angle = (Math.PI * 2) / numSparks * i; // Spread sparks evenly in a circle
+            const velocity = Math.random() * 100 + 100; // Random speed for each spark
+            const deltaX = Math.cos(angle) * velocity;
+            const deltaY = Math.sin(angle) * velocity;
 
+            spark.animate([
+                { transform: `translate(0, 0)`, opacity: 1 },
+                { transform: `translate(${deltaX}px, ${deltaY}px)`, opacity: 0 }
+            ], {
+                duration: 1000 + Math.random() * 500, // Random duration for each spark
+                easing: 'ease-out',
+                fill: 'forwards'
+            });
+
+            setTimeout(() => {
+                spark.remove();
+            }, 1500); // Duration for each spark to disappear
+        }
+    };
+
+    // Function to create explosions continuously across the screen
+    const continuousExplosions = () => {
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+
+        const explosionInterval = setInterval(() => {
+            const randomX = Math.random() * screenWidth;
+            const randomY = Math.random() * screenHeight;
+            createFireworkExplosion(randomX, randomY);
+        }, 200); // Adjust interval for explosion frequency
+
+        // Stop explosions after a set time (e.g., 5 seconds)
         setTimeout(() => {
-            spark.remove();
-        }, 2000); // Duration for each spark
+            clearInterval(explosionInterval);
+        }, 5000);
     };
 
     // Handle mystery box click
     mysteryBox.addEventListener('click', () => {
         mysteryBox.style.display = 'none'; // Hide mystery box
-
-        // Continuous fireworks
-        const fireworksInterval = setInterval(createFirework, 100); // Create fireworks every 100ms
-
-        // Stop fireworks after 5 seconds
-        setTimeout(() => {
-            clearInterval(fireworksInterval);
-        }, 5000);
+        continuousExplosions(); // Start continuous explosions
 
         // Show content after some delay
         setTimeout(() => {
             content.style.opacity = 1; // Show content
-        }, 5000); // 5 seconds delay to match the fireworks duration
+        }, 5000); // Delay to match the explosion duration
     });
 });

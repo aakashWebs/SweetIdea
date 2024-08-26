@@ -1,5 +1,6 @@
 /* Base Styles */
 body {
+    font-family: fantasy !important;
     color: indianred !important;
     font-style: normal;
     font-size: 20px;
@@ -172,7 +173,6 @@ body {
 
 /* Footer Message Styling */
 .footer-message {
-    font-family: 'Great Vibes', cursive;
     font-size: 28px;
     color: #ff5e7e;
     margin-top: 20px; /* Space above the text */
@@ -313,7 +313,6 @@ footer > .divider {
 
 /* Header styling */
 .header {
-    font-family: 'Great Vibes', cursive;
     font-size: 36px;
     color: #ff5e7e;
     margin-bottom: 10px;
@@ -321,7 +320,6 @@ footer > .divider {
 
 /* Intro message styling */
 .intro-message {
-    font-family: 'Dancing Script', cursive;
     font-size: 24px;
     color: #ff5e7e;
     margin-bottom: 20px;
@@ -329,7 +327,6 @@ footer > .divider {
 
 /* General message styling */
 .message {
-    font-family: 'Dancing Script', cursive;
     font-size: 20px;
     color: #333;
     line-height: 1.6;
