@@ -1,6 +1,5 @@
 /* Base Styles */
 body {
-    font-family: cursive !important;
     font-weight: bolder !important;
     color: indianred !important;
     font-style: oblique;
@@ -72,7 +71,6 @@ body::before {
     align-items: center;
     justify-content: center;
     color: white;
-    font-family: 'Dancing Script', cursive;
     font-size: 16px;
     text-align: center;
     overflow: hidden;
