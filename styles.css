@@ -1,0 +1,250 @@
+/* Base Styles */
+body {
+    font-size: 20px;
+    background: linear-gradient(135deg, #ffcccc, #ffe6e6);
+    font-family: 'Dancing Script', cursive;
+    color: tomato;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* Background Animation */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255,174,187,0.4) 0%, rgba(255,196,209,0) 70%);
+    z-index: -1;
+    animation: animateBg 10s infinite alternate;
+}
+
+@keyframes animateBg {
+    0% {
+        transform: scale(1);
+        filter: blur(0px);
+    }
+    100% {
+        transform: scale(1.1);
+        filter: blur(5px);
+    }
+}
+
+/* Container for the content */
+.container {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    max-width: 800px;
+    width: 90%;
+    padding: 20px;
+    text-align: center;
+    opacity: 0; /* Initially hidden */
+    position: relative;
+    z-index: 2;
+    transition: opacity 2s ease-in-out;
+}
+
+/* Mystery Box Styling */
+/* Mystery Box Styling */
+.mystery-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 120px;
+    height: 120px;
+    background: #ff5e7e; /* Heart color */
+    border-radius: 50% 50% 0 0;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 3;
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Dancing Script', cursive;
+    font-size: 14px;
+    text-align: center;
+}
+
+
+/* Heart Shape with Pseudo-elements */
+.mystery-box::before, .mystery-box::after {
+    content: '';
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: #ff5e7e; /* Heart color */
+    border-radius: 50%;
+    top: -60px; /* Half of the height */
+    z-index: -1; /* Place behind the main box */
+}
+
+/* Ensure text is bold and horizontal */
+.mystery-box span {
+    font-weight: bold; /* Make text bold */
+    transform: rotate(0deg); /* Remove rotation for horizontal text */
+    white-space: nowrap; /* Prevent text from wrapping */
+    font-size: 14px; /* Adjust font size if needed */
+    text-align: center; /* Center align text */
+}
+
+.mystery-box::before {
+    left: 0;
+}
+
+.mystery-box::after {
+    left: 60px; /* Half of the width */
+    top: 0; /* Adjust to align with the box */
+}
+
+/* Optional: Add hover effect */
+.mystery-box:hover {
+    transform: translate(-50%, -50%) scale(1.1) rotate(-45deg);
+}
+
+/* Fireworks Animation */
+.fireworks {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 4;
+}
+
+.fireworks .spark {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    animation: floatUp 2s ease-in-out infinite;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: scale(0.1) translateY(0);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1) translateY(-50vh);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1.5) translateY(-100vh);
+        opacity: 0;
+    }
+}
+
+/* Gallery Container Styling */
+.gallery-container {
+    overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Prevent line breaks */
+    padding: 15px 0; /* Add padding for scroll bar visibility */
+}
+
+/* Gallery Styling */
+.gallery {
+    display: inline-flex; /* Align items horizontally */
+    gap: 15px;
+}
+
+.gallery img {
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    max-width: 200px; /* Control image size */
+    height: auto; /* Maintain aspect ratio */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: block;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+}
+
+
+
+/* Footer Styling */
+footer {
+    margin-top: 30px;
+    font-family: 'Great Vibes', cursive;
+    font-size: 28px;
+    color: #ff5e7e;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    body {
+        font-size: 18px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    .mystery-box {
+        width: 100px;
+        height: 100px;
+        font-size: 12px;
+    }
+
+    .mystery-box::before, .mystery-box::after {
+        width: 100px;
+        height: 100px;
+        top: -50px;
+    }
+
+    .gallery {
+        flex-direction: column;
+    }
+
+    .gallery img {
+        max-width: 90%;
+    }
+
+    footer {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 16px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    .mystery-box {
+        width: 80px;
+        height: 80px;
+        font-size: 10px;
+    }
+
+    .mystery-box::before, .mystery-box::after {
+        width: 80px;
+        height: 80px;
+        top: -40px;
+    }
+
+    .gallery img {
+        max-width: 100%;
+    }
+
+    footer {
+        font-size: 20px;
+    }
+}
